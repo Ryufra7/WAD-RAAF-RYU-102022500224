@@ -1,50 +1,64 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Data Penghuni Kos</title>
-    <link rel="stylesheet" href="{{ asset('style.css') }}">
-    <style>
-        .container { width: 90%; height: auto; margin: auto; }
-        .btn { padding: 5px 10px; text-decoration: none; border-radius: 3px; }
-        .btn-tambah { background-color: #28a745; color: white; margin-bottom: 10px; display: inline-block; }
-        .btn-edit { background-color: #ffc107; color: black; }
-        .btn-hapus { background-color: #dc3545; color: white; border: none; cursor: pointer; }
-    </style>
-</head>
-<body>
-    <div class="parent">
-        <div class="container">
-            <h2>Data Penghuni Kos</h2>
-            <a href="{{ route('penghuni.create') }}" class="btn btn-tambah">+ Tambah Penghuni Baru</a>
-            
-            <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+@extends('layouts.app')
+
+@section('title', 'Data Penghuni Kos')
+@section('heading', 'Data Penghuni Kos')
+
+@section('content')
+    @php
+        $role = strtolower(trim((string) (Auth::user()->role ?? 'user')));
+        $canManage = in_array($role, ['admin', 'staff'], true);
+    @endphp
+
+    @if ($canManage)
+        <a href="{{ route('penghuni.create') }}" class="tombol tambah">+ Tambah Penghuni Baru</a>
+    @else
+        <p class="success">Anda login sebagai user biasa, jadi hanya dapat melihat data.</p>
+    @endif
+
+    <div class="table-container">
+        <table>
+            <thead>
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
                     <th>No KTP</th>
                     <th>Pekerjaan</th>
                     <th>Kontak Darurat</th>
-                    <th>Aksi</th>
+                    @if ($canManage)
+                        <th>Aksi</th>
+                    @endif
                 </tr>
-                @foreach($data as $index => $row)
-                <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $row->nama }}</td>
-                    <td>{{ $row->ktp }}</td>
-                    <td>{{ $row->pekerjaan }}</td>
-                    <td>{{ $row->kontak }}</td>
-                    <td>
-                        <a href="{{ route('penghuni.edit', $row->id) }}" class="btn btn-edit">Edit</a>
-                        <form action="{{ route('penghuni.destroy', $row->id) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-hapus" onclick="return confirm('Yakin ingin menghapus data ini?');">Hapus</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </table>
-        </div>
+            </thead>
+            <tbody>
+                @forelse($data as $index => $row)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $row->nama }}</td>
+                        <td>{{ $row->ktp }}</td>
+                        <td>{{ $row->pekerjaan }}</td>
+                        <td>{{ $row->kontak }}</td>
+                        @if ($canManage)
+                            <td>
+                                <div class="aksi">
+                                    <a href="{{ route('penghuni.edit', $row->id) }}" class="btn-edit">Edit</a>
+                                    <form action="{{ route('penghuni.destroy', $row->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-hapus"
+                                            onclick="return confirm('Yakin ingin menghapus data ini?');">Hapus</button>
+                                    </form>
+                                </div>
+                            </td>
+                        @endif
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="{{ $canManage ? 6 : 5 }}" class="kosong">Belum ada data penghuni.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
-</body>
-</html>
+
+    <a href="{{ route('dashboard') }}" class="tombol">Kembali ke Dashboard</a>
+@endsection

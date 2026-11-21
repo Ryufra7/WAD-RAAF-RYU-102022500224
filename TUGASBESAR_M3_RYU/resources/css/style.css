@@ -1,56 +1,467 @@
+/* ===== PENGATURAN DASAR ===== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    padding: 20px;
+    background-color: #FAE3C6;
+    padding: 30px 15px;
+    color: #533B4D;
 }
 
-.blok{
-    display: block;
-    border: #000000;
-    border-style: solid;
-    padding: 16px;
-    background-color:rgb(247, 202, 145);
-    justify-content: center;
-}
+/* ===== CONTAINER UTAMA ===== */
 
 .container {
-    display: grid;
-    place-content: center;
-    height: 80vh;
+    max-width: 770px;
+    width: 100%;
+    margin: 25px auto;
     background-color: white;
-    padding: 20px;
-    border: 1px solid #ccc;
-    width: 80vh;
-    justify-content: center;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(83, 59, 77, 0.12);
 }
+
+/* ===== JUDUL ===== */
+
+h1, h2, h3 {
+    text-align: center;
+    color: white;
+    background-color: #F564A9;
+    padding: 15px;
+    border-radius: 9px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(83, 59, 77, 0.12);
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+/* ===== DESKRIPSI ===== */
+
+p {
+    color: #533B4D;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+/* ===== FORM ===== */
+
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
+
 label {
+    display: block;
     font-weight: bold;
+    margin-bottom: 8px;
+    color: #533B4D;
 }
-input[type="text"] {
-    width: 90%;
-    padding: 8px;
-    margin-top: 5px;
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #e8d5df;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #FCF5FA;
+    color: #533B4D;
+    transition: 0.3s;
 }
-button {
-    padding: 10px 15px;
-    background-color: rgb(117, 167, 111);
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #F564A9;
+    box-shadow: 0 0 5px rgba(245, 100, 169, 0.3);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* ===== TOMBOL SIMPAN ===== */
+
+button,
+input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #533B4D;
     color: white;
     border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
 }
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: #F564A9;
+    color: white;
+}
+
+button:active,
+input[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* ===== LINK ===== */
+
+a {
+    color: #F564A9;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #533B4D;
+    text-decoration: underline;
+}
+
+/* ===== TABEL ===== */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
+    background-color: white;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 11px 12px;
+    text-align: left;
+    border: 1px solid #e5d5df;
+}
+
+th {
+    background-color: #FAA4BD;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #FCF5FA;
+}
+
+tr:nth-child(odd) {
+    background-color: white;
+}
+
+tr:hover {
+    background-color: #FAE3C6;
+}
+
+/* ===== DATA STAFF ===== */
+
+.data {
+    background-color: #FCF5FA;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+/* ===== TOMBOL EDIT ===== */
+
+.btn-edit {
+    display: inline-block;
+    background-color: #FAA4BD;
+    color: #533B4D;
+    padding: 7px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.btn-edit:hover {
+    background-color: #F564A9;
+    color: white;
+    text-decoration: none;
+}
+
+/* ===== TOMBOL HAPUS ===== */
+
+.btn-hapus {
+    display: inline-block;
+    background-color: #dc3545;
+    color: white;
+    padding: 7px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.btn-hapus:hover {
+    background-color: #F564A9;
+    color: white;
+    text-decoration: none;
+}
+
+/* ===== TOMBOL KEMBALI ===== */
+
+.tombol {
+    display: block;
+    text-align: center;
+    background-color: #533B4D;
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
     margin-top: 20px;
 }
-table, th, td {
-    border: 1px solid black;
+
+.tombol:hover {
+    background-color: #F564A9;
+    color: white;
+    text-decoration: none;
 }
-th, td {
-    padding: 10px;
+
+/* ===== NOTIFIKASI ===== */
+
+.success {
+    background-color: #FCF5FA;
+    color: #533B4D;
+    padding: 12px;
+    border-left: 4px solid #F564A9;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media screen and (max-width: 600px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 18px;
+        margin: 10px auto;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+    }
+}
+
+
+/* =====================================================
+   TAMBAHAN (di luar CSS asli): login, dashboard, tabel
+   ===================================================== */
+
+/* Container sempit untuk form & login/register */
+.narrow {
+    max-width: 480px;
+}
+
+/* ===== DASHBOARD ===== */
+
+.wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.header {
+    background-color: #533B4D;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+.header h1 {
     text-align: left;
+    color: white;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    margin-bottom: 12px;
+}
+
+.header p {
+    color: white;
+    margin-bottom: 4px;
+}
+
+.content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.content h2 {
+    text-align: left;
+    color: #533B4D;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    margin-bottom: 8px;
+}
+
+.menu-card {
+    background-color: #FCF5FA;
+    border: 2px solid #FAA4BD;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.menu-card h3 {
+    text-align: left;
+    color: #533B4D;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.menu-card p {
+    margin-bottom: 8px;
+}
+
+.menu-card a {
+    display: inline-block;
+    background-color: #F564A9;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.menu-card a:hover {
+    background-color: #533B4D;
+    color: white;
+    text-decoration: none;
+}
+
+.menu-soon {
+    display: inline-block;
+    background-color: #FAA4BD;
+    color: #533B4D;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.logout {
+    margin-top: 25px;
+    text-align: right;
+}
+
+.logout button {
+    width: auto;
+    padding: 12px 22px;
+    border-radius: 8px;
+}
+
+/* ===== TABEL: tombol aksi ===== */
+
+.aksi {
+    display: flex;
     justify-content: center;
+    gap: 8px;
+}
+
+.aksi form {
+    display: inline;
+    margin: 0;
+}
+
+.btn-edit,
+.btn-hapus {
+    width: auto;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+.aksi .btn-edit {
+    margin-bottom: 0;
+}
+
+.kosong {
+    text-align: center;
+    opacity: 0.7;
+}
+
+.tombol.tambah {
+    background-color: #F564A9;
+    margin-top: 0;
+}
+
+.tombol.tambah:hover {
+    background-color: #533B4D;
+}
+
+/* ===== LOGIN & REGISTER ===== */
+
+.error {
+    background-color: #FCF5FA;
+    color: #533B4D;
+    padding: 12px;
+    border-left: 4px solid #dc3545;
+    border-radius: 5px;
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+.error ul {
+    padding-left: 18px;
+}
+
+.check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: normal;
+}
+
+input[type="checkbox"] {
+    width: auto;
+}
+
+.auth-switch {
+    text-align: center;
+    margin: 18px 0 0 0;
+    font-size: 14px;
 }
